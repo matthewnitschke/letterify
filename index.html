@@ -1,12 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Letterify</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
+
+  <style>
+  .center {
+    text-align: center;
+  }
+    textarea{
+      width: 90%;
+      min-height: 20rem;
+    }
+    .mt2 {
+      margin-top: 2rem;
+    }
+
+    #letters {
+      margin: 1rem;
+    }
+  </style>
 </head>
 <body>
-    <h1>This is the test</h1>
+  <div class="center pure-form mt2">
+    <textarea id="words"></textarea>
+  </div>
+
+  <div class="center mt2">
+    <input type="button" id="goButton" value="Go!" class="pure-button pure-button-primary">
+  </div>
+
+
+  <div id="letters" class="mt2"></div>
+
+  <script>
+    document.getElementById("goButton").addEventListener("click", run);
+    document.getElementById("words").addEventListener("input", run);
+    function run(){
+      var words = document.getElementById("words").value;
+
+      var letters = getLetters(words);
+
+      document.getElementById("letters").innerHTML = letters;
+    }
+
+    function getLetters(words){
+      var letters = words.match(/[\d:]+|(\b(\w)|[.,!"';:()])/g);
+      if (letters){
+        return letters.join(' ');
+      } else {
+        return "";
+      }
+    }
+  </script>
 </body>
 </html>
