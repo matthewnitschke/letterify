@@ -47,7 +47,7 @@
     }
 
     function getLetters(words){
-      var letters = words.match(/[\d:]+|(\b(\w)|[.,!"';:()])/g);
+      var letters = words.match(/[\d:]+|(\b(\w)|[^a-zA-Z\d\s:])/g);
       if (letters){
         return letters.join(' ');
       } else {
